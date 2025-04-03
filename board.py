@@ -51,6 +51,13 @@ class Board:
               f"│ {p7} │ {p8} │ {p9} │")
         print("└───┴───┴───┘" + "          " + "└───┴───┴───┘")
 
+    def get_available_cells(self):
+        """
+        Return a list of all empty cells in the board.
+        """
+        return [self.cells.index(cell) + 1
+                for cell in self.cells if cell == ' ']
+
     def clear_cell(self, position):
         """
         Make the cell empty.

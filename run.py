@@ -4,6 +4,34 @@ from enums import Winner
 from board import Board
 
 
+def play_game():
+    """
+    Play new round with new empty board.
+    """
+    board = Board()  # Create new empty board
+    winner = Winner.NONE  # Set the winner to NONE
+    board.print()
+    i = 0  # i is even >> it is your turn
+
+    # The new game will keep going until the winner is not NONE
+    while winner == Winner.NONE:
+        if i % 2 == 0:  # User turn
+            user_move(board)
+        else:  # Computer turn
+            computer_move(board)
+        # After every move, we check if there is a winning combination
+        winner = board.check_winner()
+        if winner == Winner.USER:
+            print("\n*** You win! *** " +
+                  f" Winning comibination is: {board.win_combo} ***\n")
+        elif winner == Winner.COMPUTER:
+            print("\n*** Computer wins! ***" +
+                  f" Winning comibination is: {board.win_combo} ***\n")
+        elif winner == Winner.DRAW:
+            print("\n*** It's a draw! ***\n")
+        i += 1  # this will change the turn
+
+
 def user_move(board):
     """
     This function allows the user to make a move.
@@ -98,10 +126,7 @@ def main():
     The main function which manages the game.
     """
     print("\nWelcome to Tic Tac Toe!\n")
-    board = Board()
-    board.print()
-    user_move(board)
-    computer_move(board)
+    play_game()
 
 
 main()

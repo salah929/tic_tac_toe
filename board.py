@@ -2,7 +2,6 @@ class Board:
     """
     Represents the game board
     """
-    # Represents the game board
     def __init__(self):
         """
         Initialize the board with empty nine cells.
@@ -32,3 +31,19 @@ class Board:
         print("├───┼───┼───┤")
         print(f"│ {c7} │ {c8} │ {c9} │")
         print("└───┴───┴───┘")
+
+    def make_move(self, position, symbol):
+        """
+        Make user move or computer move if it is valid.
+        """
+        # Attempt to make a selection at the given position (1-9)
+        if self.is_valid_move(position):
+            self.cells[position - 1] = symbol
+            return True
+        return False
+
+    def is_valid_move(self, position):
+        """
+        Check if the move is valid (1-9 and not already taken).
+        """
+        return 1 <= position <= 9 and self.cells[position - 1] == ' '

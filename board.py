@@ -1,3 +1,6 @@
+from enums import Winner
+
+
 class Board:
     """
     Represents the game board
@@ -48,6 +51,13 @@ class Board:
               f"│ {p7} │ {p8} │ {p9} │")
         print("└───┴───┴───┘" + "          " + "└───┴───┴───┘")
 
+    def clear_cell(self, position):
+        """
+        Make the cell empty.
+        Computer may need to make the cell empty again after some testing.
+        """
+        self.cells[position - 1] = ' '
+
     def make_move(self, position, symbol):
         """
         Make user move or computer move if it is valid.
@@ -63,3 +73,23 @@ class Board:
         Check if the move is valid (1-9 and not already taken).
         """
         return 1 <= position <= 9 and self.cells[position - 1] == ' '
+
+    def check_winner(self):
+        """
+        Check if there is a winning combination in the board
+        """
+        win_combinations = [  # all winning combinations
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],  # rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],  # columns
+            [0, 4, 8], [2, 4, 6]              # diagonals
+        ]
+        for combo in win_combinations:
+            if all(self.cells[i] == 'x' for i in combo):  # user wins
+                self.win_combo = [i + 1 for i in combo]
+                return Winner.USER
+            elif all(self.cells[i] == 'o' for i in combo):  # computer wins
+                self.win_combo = [i + 1 for i in combo]
+                return Winner.COMPUTER
+        if not (' ' in self.cells):  # the board is full >> draw
+            return Winner.DRAW
+        return Winner.NONE

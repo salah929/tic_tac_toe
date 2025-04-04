@@ -4,14 +4,20 @@ from enums import Winner
 from board import Board
 
 
-def play_game():
+def play_game(i):
     """
     Play new round with new empty board.
+    If i is even the user starts, else computer starts.
+    i will be increased after every round.
     """
     board = Board()  # Create new empty board
     winner = Winner.NONE  # Set the winner to NONE
     board.print()
-    i = 0  # i is even >> it is your turn
+    print(f"\nRound: {i + 1}\n")
+    if i % 2 == 0:  # i is even >> you start
+        print("You start.")
+    else:  # i is odd >> computer starts
+        print("Computer starts.")
 
     # The new game will keep going until the winner is not NONE
     while winner == Winner.NONE:
@@ -30,6 +36,7 @@ def play_game():
         elif winner == Winner.DRAW:
             print("\n*** It's a draw! ***\n")
         i += 1  # this will change the turn
+    return winner
 
 
 def user_move(board):
@@ -56,7 +63,7 @@ def user_move(board):
 def computer_move(board):
     """
     In this function, the computer makes a move.
-    The move will be taken accoring to the actual situation of the board.
+    The move will be taken according to the actual situation of the board.
     """
     print("\nComputer is thinking...\n")
     time.sleep(0.5)
@@ -124,9 +131,32 @@ def computer_move(board):
 def main():
     """
     The main function which manages the game.
+    Start a new round as long as the user wants to play.
+    Check if there is a winner after each round.
+    And increase the score accordingly.
     """
     print("\nWelcome to Tic Tac Toe!\n")
-    play_game()
+    i = 0  # when i is even >> user starts
+    user_score = 0
+    computer_score = 0
+    continue_playing = True
+    while continue_playing:
+        winner = play_game(i)
+        if winner == Winner.USER:
+            user_score += 1
+        elif winner == Winner.COMPUTER:
+            computer_score += 1
+        print(f"*** Your score: {user_score}, " +
+              f"Computer score: {computer_score} ***\n")
+        i += 1  # change the starting player
+        print("Do you want to continue playing?")
+        play_more = input("enter 'y' to continue, or any other key to exit: ")
+        print()
+        if play_more.upper() != 'Y':
+            continue_playing = False
+    # The user wants to stop
+    print("Thanks for playing Tic Tac Toe.")
+    print("Hope to see you again soon.\n")
 
 
 main()

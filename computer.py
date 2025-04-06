@@ -3,7 +3,7 @@ import time
 from enums import Winner
 
 
-class Computer:
+class Opponent:
     """
     Represents the Computer as the opponent player.
     """

@@ -4,7 +4,7 @@ from board import Board
 from computer import Computer
 
 
-def play_game(i):
+def play_game(i, difficulty):
     """
     Play new round with new empty board.
     If i is even the user starts, else computer starts.
@@ -25,7 +25,7 @@ def play_game(i):
         if i % 2 == 0:  # User turn
             user_move(board)
         else:  # Computer turn
-            computer.move(board, 1)
+            computer.move(board, difficulty)
         # After every move, we check if there is a winning combination
         winner = board.check_winner()
         if winner == Winner.USER:
@@ -61,6 +61,31 @@ def user_move(board):
             print("Invalid input. Please enter a number between 1 and 9.")
 
 
+def select_game_level():
+    """
+    This function allows the user to select the game level.
+    It accepts only 1 and 2 numbers.
+    1 >> easy , 2 >> difficult.
+    """
+    print("Please enter the level of the game.")
+    level = 0
+    while level == 0:
+        try:
+            level = int(input("1 for easy, 2 for difficult: "))
+            if level >= 1 and level <= 2:
+
+                print("\nOk. The level of the game is " +
+                      f"{"easy" if level == 1 else "difficult"}\n")
+                time.sleep(0.5)
+                return level
+            else:
+                level = 0
+                print("\nInvalid choice. Please enter 1 or 2.")
+        except ValueError:
+            level = 0
+            print("\nInvalid input. Please enter 1 or 2.")
+
+
 def main():
     """
     The main function which manages the game.
@@ -69,12 +94,13 @@ def main():
     And increase the score accordingly.
     """
     print("\nWelcome to Tic Tac Toe!\n")
+    level = select_game_level()
     i = 0  # when i is even >> user starts
     user_score = 0
     computer_score = 0
     continue_playing = True
     while continue_playing:
-        winner = play_game(i)
+        winner = play_game(i, level)
         if winner == Winner.USER:
             user_score += 1
         elif winner == Winner.COMPUTER:

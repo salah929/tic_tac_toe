@@ -3,12 +3,12 @@ import time
 from enums import Winner
 
 
-class Opponent:
+class Computer:
     """
     Represents the Computer as the opponent player.
     """
 
-    def move_easy(board):
+    def move_easy(self, board):
         """
         Make a move randomly.
         """
@@ -22,7 +22,7 @@ class Opponent:
         time.sleep(0.5)
         board.print()
 
-    def move_hard(board):
+    def move_hard(self, board):
         """
         Make a move according to the actual situation of the board.
         """

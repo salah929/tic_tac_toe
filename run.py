@@ -4,13 +4,14 @@ from board import Board
 from computer import Computer
 
 
-def play_game(i, difficulty):
+def play_game(i, level):
     """
     Play new round with new empty board.
+    level is the difficulty of the game, 1 for easy, 2 for difficult
     If i is even the user starts, else computer starts.
     i will be increased after every round.
     """
-    computer = Computer()
+    computer = Computer()  # Create the opponent (Computer)
     board = Board()  # Create new empty board
     winner = Winner.NONE  # Set the winner to NONE
     board.print()
@@ -25,7 +26,7 @@ def play_game(i, difficulty):
         if i % 2 == 0:  # User turn
             user_move(board)
         else:  # Computer turn
-            computer.move(board, difficulty)
+            computer.move(board, level)
         # After every move, we check if there is a winning combination
         winner = board.check_winner()
         if winner == Winner.USER:
@@ -80,7 +81,7 @@ def select_game_level():
                 return level
             else:
                 level = 0
-                print("\nInvalid choice. Please enter 1 or 2.")
+                print("\nInvalid input. Please enter 1 or 2.")
         except ValueError:
             level = 0
             print("\nInvalid input. Please enter 1 or 2.")

@@ -50,7 +50,7 @@ def user_move(board):
     valid_move = False
     while not valid_move:
         try:
-            position = int(input("\nYour move? (1-9): "))
+            position = int(input("\nYour move? (1-9):\n"))
             valid_move = board.make_move(position, 'x')
             if valid_move:
                 print("\nValid move.\n")
@@ -72,7 +72,7 @@ def select_game_level():
     level = 0
     while level == 0:
         try:
-            level = int(input("1 for easy, 2 for difficult: "))
+            level = int(input("1 for easy, 2 for difficult:\n"))
             if level >= 1 and level <= 2:
 
                 print("\nOk. The level of the game is " +
@@ -110,7 +110,7 @@ def main():
               f"Computer score: {computer_score} ***\n")
         i += 1  # change the starting player
         print("Do you want to continue playing?")
-        play_more = input("enter 'y' to continue, or any other key to exit: ")
+        play_more = input("enter 'y' to continue, or any other key to exit:\n")
         print()
         if play_more.upper() != 'Y':
             continue_playing = False

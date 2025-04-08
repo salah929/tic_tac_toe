@@ -31,10 +31,10 @@ def play_game(i, level):
         winner = board.check_winner()
         if winner == Winner.USER:
             print("\n*** You win! *** " +
-                  f" Winning comibination is: {board.win_combo} ***\n")
+                  f" Winning combination is: {board.win_combo} ***\n")
         elif winner == Winner.COMPUTER:
             print("\n*** Computer wins! ***" +
-                  f" Winning comibination is: {board.win_combo} ***\n")
+                  f" Winning combination is: {board.win_combo} ***\n")
         elif winner == Winner.DRAW:
             print("\n*** It's a draw! ***\n")
         i += 1  # this will change the turn
@@ -69,21 +69,18 @@ def select_game_level():
     1 >> easy , 2 >> difficult.
     """
     print("Please enter the level of the game.")
-    level = 0
-    while level == 0:
+    while True:
         try:
             level = int(input("1 for easy, 2 for difficult:\n"))
             if level >= 1 and level <= 2:
 
-                print("\nOk. The level of the game is " +
-                      f"{"easy" if level == 1 else "difficult"}\n")
+                difficulty = "easy" if level == 1 else "difficult"
+                print(f"\nOk. The level of the game is {difficulty}\n")
                 time.sleep(0.5)
                 return level
             else:
-                level = 0
                 print("\nInvalid input. Please enter 1 or 2.")
         except ValueError:
-            level = 0
             print("\nInvalid input. Please enter 1 or 2.")
 
 

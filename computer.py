@@ -39,17 +39,15 @@ class Computer:
                     position = pos
                     position_found = True
                     break
-                board.clear_cell(pos)  # if it is not a winnig move, undo move
+                board.clear_cell(pos)  # if it is not a winning move, undo move
 
         # 2. Check if there is a blocking move
-        #    This means it is a user winnig move
+        #    This means it is a user winning move
         if not position_found:
             for pos in range(1, 10):  # check all cells
                 if board.is_valid_move(pos):  # if cell is empty >> valid move
                     board.make_move(pos, 'x')  # make the move for the user
-                    # Check if the move is blocking move
-                    # Blocking move means, it is a winning move for the user
-                    # if so, the computer should take it
+                    # If user has a winning move, block it
                     if board.check_winner() == Winner.USER:
                         board.clear_cell(pos)
                         board.make_move(pos, 'o')  # if it is, take it
@@ -67,7 +65,7 @@ class Computer:
         # 4. Take a corner if available
         if not position_found:
             corners = [1, 3, 7, 9]
-            # shaffle the corners list,
+            # shuffle the corners list,
             # so the computer does not make the same move every time
             random.shuffle(corners)
             for pos in corners:
@@ -80,9 +78,8 @@ class Computer:
         # 5. Pick random cell
         if not position_found:
             available_cells = board.get_available_cells()
-            pos = random.choice(available_cells)
-            board.make_move(pos, 'o')
-            position = pos
+            position = random.choice(available_cells)
+            board.make_move(position, 'o')
 
         print(f"Computer chooses position {position}.\n")
         time.sleep(0.5)

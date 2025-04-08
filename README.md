@@ -1,32 +1,68 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Tic Tac Toe
 
-Welcome,
+Tic Tac Toe is a Python terminal game, which runs in the Code Institute mock termnal on Heroku.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+User will try to beat the computer by making one of the winning combinations before the computer makes.
 
-## Reminders
+![Tic Tac Toe](tic-tac-toe.PNG)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## How to play
 
-## Creating the Heroku app
+- Start the game and choose the difficulty
+    - 1 = Easy (computer makes random moves)
+    - 2 = Difficult (computer makes smart moves)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+- You play as 'x', the computer plays as 'o'.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+- Pick a cell by entering a number (1–9) based on this layout:
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+    ![Possible Moves](tic-tac-toe-possible-moves.png)
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+- The first to get three in a row wins.
 
-Connect your GitHub repository and deploy as normal.
+- A full board with no winner is a draw.
 
-## Constraints
+- At the end of the game, you can play again or exit.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## Features
 
----
+### Existing Features
 
-Happy coding!
+- Single-player mode against the computer
+
+- Two difficulty levels: Easy and Difficult
+
+- Interactive CLI interface with a clear 3×3 board layout
+
+- Replay option after each round
+
+- Score tracking for user and computer
+
+- Move validation to prevent invalid inputs
+
+- Winning combination display after each round
+
+### Future Feature
+
+- Add impossible level (minimax algorithm)
+
+## Testing
+
+- Given invalid inputs for the level and moves and get a proper error message.
+
+- Pased the code through a PEP8 checker and confirmed that there are no errors.
+
+- Tested in local terminal and Heroku terminal.
+
+## Bugs
+
+- The first time I wrote the function "get_available_cells", I did a mistake and the the funciton returned always the first available cell.
+
+## Code Validating
+
+- PEP8
+    - No errors
+
+## Deployment
+
+The project was deployed using GitHub and Code Institute's mock terminal for Heroku.

@@ -96,6 +96,6 @@ class Board:
             elif all(self.cells[i] == 'o' for i in combo):  # computer wins
                 self.win_combo = [i + 1 for i in combo]
                 return Winner.COMPUTER
-        if not (' ' in self.cells):  # the board is full >> draw
+        if not (' ' in self.cells):  # the board is full >> it is a draw
             return Winner.DRAW
         return Winner.NONE

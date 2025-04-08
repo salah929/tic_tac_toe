@@ -55,8 +55,7 @@ class Board:
         """
         Return a list of all empty cells in the board.
         """
-        return [self.cells.index(cell) + 1
-                for cell in self.cells if cell == ' ']
+        return [1 + i for i, char in enumerate(self.cells) if char == ' ']
 
     def clear_cell(self, position):
         """

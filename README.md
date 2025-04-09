@@ -16,7 +16,7 @@ User will try to beat the computer by making one of the winning combinations bef
 
 - Pick a cell by entering a number (1–9) based on this layout:
 
-    ![Possible Moves](tic-tac-toe-possible-moves.png)
+    ![Possible Moves](tic-tac-toe-possible-moves.PNG)
 
 - The first to get three in a row wins.
 
